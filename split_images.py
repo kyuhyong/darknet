@@ -14,8 +14,8 @@ elif (len(sys.argv) > 2):
     print "Input arguments more than 1 not valid!"
     sys.exit(0)
 imgdir=sys.argv[1]
-testFilename = imgdir+"test.txt"
-trainFilename = imgdir+"train.txt"
+testFilename = imgdir+"/test.txt"
+trainFilename = imgdir+"/train.txt"
 for root, dirs, files in os.walk(imgdir):
     for file in files:
         if file.endswith(".jpg"):
