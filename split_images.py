@@ -13,12 +13,14 @@ if (len(sys.argv) < 2):
 elif (len(sys.argv) > 2):
     print "Input arguments more than 1 not valid!"
     sys.exit(0)
-imgdir=sys.argv[1]
-testFilename = imgdir+"/test.txt"
-trainFilename = imgdir+"/train.txt"
-for root, dirs, files in os.walk(imgdir):
+root_dir=sys.argv[1]
+testFilename = root_dir+"test.txt"
+trainFilename = root_dir+"train.txt"
+img_dir = ""
+for root, dirs, files in os.walk(root_dir):
     for file in files:
         if file.endswith(".jpg"):
+            img_dir = dirname = root.split(os.path.sep)[-1]
             img_filenames.append(file)
             #print(os.path.join(root, file))
         if file.endswith(".txt"):
@@ -28,6 +30,7 @@ for root, dirs, files in os.walk(imgdir):
                 txtFileName = txtFileName.replace('.xml','')
                 print txtFileName
                 os.rename(root+'/'+file, root+'/'+txtFileName)
+print img_dir
 print ("Total files: %d"%len(img_filenames))
 # Shuffle all images in the filename list
 img_filenames.sort()
@@ -46,11 +49,11 @@ test_files = img_filenames[split_a:]
 filenames = {'train': train_files,
              'test': test_files}
 with open(trainFilename, "w") as f:
-   for img_filename in train_files:
-        f.write(imgdir+'images/'+img_filename+'\r\n')
+    for img_filename in train_files:
+        f.write(root_dir+img_dir+'/'+img_filename+'\r\n')
 with open(testFilename, "w") as f:
-   for img_filename in test_files:
-        f.write(imgdir+'images/'+img_filename+'\r\n')
+    for img_filename in test_files:
+        f.write(root_dir+img_dir+'/'+img_filename+'\r\n')
 print "Done!"
 print "Train files listed in "+trainFilename
 print "Test files listed in "+testFilename

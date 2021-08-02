@@ -65,3 +65,5 @@ uselib_track
 darknet
 vcpkg/
 my_data/
+*.conv.*
+log/
