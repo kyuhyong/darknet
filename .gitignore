@@ -67,3 +67,4 @@ vcpkg/
 my_data/
 *.conv.*
 log/
+hippo_data2/
